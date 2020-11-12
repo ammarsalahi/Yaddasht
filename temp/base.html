@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="{% static 'mbs/css/bootstrap.min.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'mbs/css/mdb.min.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'ppl/propeller.min.css' %}" rel="stylesheet">
+    <link href="{% static 'swt/sweetalert.css' %}" rel="stylesheet">
+    <link href="{% static 'jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'photo/noteicon.png' %}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+  
+    {% block css %}
+    {% endblock css %}
+    <title>یادداشت</title>
+</head>
+<body>
+    {% if addedit %}
+    <nav class=" mb-1 navbar navbar-expand-lg navbar-dark bg-warning fixed-top" style="height: 55px;">
+      <a href="/" class=" navbar-brand" style="font-size:17px;">
+      <img src="{% static 'photo/noteicon.png' %}" style="width: 30px; height: 30px;"> یادداشت</a>
+      <div class="collapse navbar-collapse">
+          <div class=" navbar-nav mr-auto">
+            <center>
+             <form action="{% url 'search' %}" method="get" class="d-flex">
+               <input class=" form-control" style=" width:400px; height: 30px; border-radius: 0px 12px 12px 0px;" type="text" name="q" placeholder="جستجو...">
+               <button type="submit" class="btn btn-sm btn-indigo mt-auto mb-auto mr-0 " style="height: 30px; border-radius: 12px 0px 0px 12px;"><i class="fas fa-search"></i></button>
+             </form>
+            </center>
+           
+          </div>
+         <ul class=" navbar-nav mr-auto">
+             <li class=" nav-item dropdown ml-4">
+                 <a class="nav-link " id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="true">
+                 <img src="{{user.photo.url}}" style="width:37px; height:37px; border-radius: 20px 20px 20px 20px;">
+               </a>
+               <div class="dropdown-menu dropdown-menu-left dropdown-default"
+                 aria-labelledby="navbarDropdownMenuLink-333" style=" width:300px;">
+                 <center>
+                   <br>
+                   <img src="{{user.photo.url}}" style=" width:90px; height:90px; border-radius:50px 50px 50px 50px;">
+                   <p class=" title mt-2"><strong>{{user.fname}} {{user.lname}}</strong></p>
+                   <p class=" title mt-2">ایمیل کاربر</p>
+                 </center>
+                  <hr>
+                 <a class="dropdown-item text-right" href="#"><i class=" material-icons">edit</i>ویرایش حساب  </a>
+                 <a class="dropdown-item text-right" href="#"><i class=" material-icons">lock</i>تغییر گذرواژه</a>
+                 <a class="dropdown-item text-center" href="{% url 'logout' %}"><i class="fas fa-power-off"></i>خروج</a>
+               </div>
+             </li>
+             
+         </ul>
+      </div>
+    </nav>
+    {% endif %}
+    {% block content %}
+
+    {% endblock content %}
+
+
+    <script type="text/javascript" src="{% static 'mbs/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'mbs/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'mbs/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'mbs/js/mdb.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'ppl/propeller.min.js' %}"></script> 
+    <script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jscolor.js' %}"></script> 
+    <script type="text/javascript" src="{% static 'jasny/jasny-bootstrap.min.js' %}"></script>
+
+
+
+
+
+   {% block javascript %}
+   {% endblock javascript %}
+
+
+
+  </body>
+</html>
