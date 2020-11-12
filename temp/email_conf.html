@@ -1,0 +1,23 @@
+{% include 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class=" container ">
+  <div class=" card col-md-5">
+    <h4 class=" card-header warning-color  white-text text-center py-4">
+        <strong>{{form-title}}</strong>
+    </h4>
+    <div class=" card-body">  
+        <form action="" method="post" class="text-right" >
+            <center>
+                <label for="emailtext"></label>
+                <input type="email" name="email" id="emailtext" placeholder="name@example.com">
+            <div class=" container mt-4">
+                    <button class=" btn btn-primary" type="submit">{{form-btn}}</button>
+            </div>
+            </center>
+        </form> 
+    </div>
+  </div>
+</div>
+{% endblock content %}

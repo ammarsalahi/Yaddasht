@@ -1,0 +1,39 @@
+{% include 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block css %}
+
+{% endblock css %}
+{% block content %}
+<div class=" container col-md-7 mb-4" style=" margin-top:100px;" >
+  <div class="card ">
+    <h4 class=" card-header warning-color  white-text text-center py-3">
+        <strong class=" text-white" style=" font-size:20px;"> {{formtitle}}</strong>
+    </h4>
+    <div class=" card-body px-lg-5 pt-0"> <br>
+        <form method="post" enctype="multipart/form-data" style="color: #202020; padding-left: 20px;padding-right: 20px;">
+          {% csrf_token %} 
+          {{form.media}}
+          {{form.content}}
+          <center>
+            <br>
+              <button class=" btn btn-lg btn-indigo text-white px-20" type="submit">{{formbtn}}</button><br>
+            </center>
+            
+        </form>
+        {% if messages %}
+        <br>
+        <br>
+        <ul class=" container message text-center text-danger" style=" list-style:none;">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} 
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block javascript %}
+
+{% endblock javascript %}

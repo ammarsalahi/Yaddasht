@@ -1,0 +1,43 @@
+{% include 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class=" container col-md-4 mb-4" style=" margin-top:100px;">
+  <div class="card ">
+    <h4 class=" card-header warning-color  white-text text-center py-4">
+        <strong>{{formtitle}}</strong>
+    </h4>
+    <div class=" card-body px-lg-5 pt-0"> <br>
+        <form method="post" class="text-right"  style="color: #202020;" enctype="multipart/form-data"> 
+          {% csrf_token %}
+            {{form|crispy}}
+            <center>
+              <button class=" btn btn-lg btn-indigo text-white px-20" type="submit">{{formbtn}}</button><br>
+               
+            </center>
+        </form>
+        {% if signin %}
+        <div class=" card-footer bg-white mt-3">
+          <center>
+            
+              <a href="/">فراموشی رمز</a><br>
+               حساب کاربری ندارید؟ <a href="{% url 'signup' %}">ثبت نام</a>
+              
+          </center>
+
+        </div>
+        {% endif %}
+        {% if messages %}
+        <br>
+        <br>
+        <ul class=" container message text-center text-danger" style=" list-style:none;">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} 
+    </div>
+  </div>
+</div>
+{% endblock content %}

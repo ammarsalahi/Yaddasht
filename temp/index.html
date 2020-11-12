@@ -1,0 +1,76 @@
+{% include 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load jalali_tags %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'top-btn.css' %}">
+  <link rel="stylesheet" href="{% static 'styleme.css' %}">
+
+{% endblock css %}
+{% block content %}
+
+
+
+<div class="row row-cols-1 row-cols-md-4 mr-3 ml-3" style="margin-top: 100px;" >
+  {% if  yads %}
+  {% for yad in yads %}
+  <div class="col mb-4 text-right " dir="rtl">
+    <div class="card mr-3 ml-3">
+      <div class="card-title py-2 bg-warning">
+         <form action="{% url 'del-yadd' %}" method="post" id="myform">
+           {% csrf_token %}
+          <button type="submit" name="yidd" value="{{yad.id}}" id="btndelme"  class=" btn-del btn btn-sm pmd-btn-fab mr-2 text-white bg-danger" style="font-size: 20px;"
+          onclick="return confirm('آیا می خواهید این یادداشت را حذف کنید؟');"><i class="material-icons">close</i></button>        
+         </form>
+         <center>
+          <p><i class="material-icons">date_range</i> {{yad.date|to_jalali:'%y/%m/%d'}} <i class="material-icons">alarm</i> {{yad.date|to_jalali:'%H:%M'}} </p>
+         </center>
+
+      </div>
+      
+      <div class="card-body" dir="rtl">
+        <br>
+         <p class="text-right">
+          {{yad.content|safe}}
+         </p>
+        <center>
+          <form action="{% url 'edit-yadd' %}" method="GET">
+             <button class=" btn pmd-btn-fab btn-information" type="submit" name='yid' value="{{yad.pk}}"><i class="material-icons">edit</i></button>
+          </form>
+        </center>
+      </div>
+    </div>
+  </div>
+     {% endfor %}
+  {% endif %}   
+     
+</div>
+
+</div>
+{% if topss %}
+<button id="btnScrollToTop" class="btn pmd-btn-fab pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">arrow_upward</i></button>
+{% endif %}
+<a href="{% url 'add-yadd' %}">
+  <button id="btnAdd" class="btn pmd-btn-fab pmd-ripple-effect bg-warning" type="button" name="button"><i class="material-icons pmd-sm text-white"><b>add</b></i></button>
+</a>
+      
+{% endblock content %}
+
+{% block javascript %}
+<script>
+const btnScrollToTop= document.querySelector("#btnScrollToTop");
+btnScrollToTop.addEventListener("click",function(){
+  $("html, body").animate({scrollTop:0},'slow');
+});
+</script>
+
+<script>
+   var btndel=document.querySelector('#btndelme').;
+  btndel.addEventListener('click',function(){
+    
+  });
+
+  
+</script>
+
+{% endblock javascript %}
