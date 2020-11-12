@@ -1,2 +1,2 @@
 # Yaddasht
-webapplication note using django
+note webapplication using django
